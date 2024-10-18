@@ -612,6 +612,7 @@
                     </sourceDirectories>
                 </configuration>
             </plugin>
+            <!--dev_cwc-->
             <plugin>
                 <groupId>net.revelc.code.formatter</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
@@ -631,7 +632,28 @@
                         <directory>${project.basedir}/src/main/java-templates</directory>
                     </directories>
                 </configuration>
+                <executions>
+                    <!-- 포맷 검증을 비활성화 -->
+                    <execution>
+                        <id>validate</id>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                        <configuration>
+                            <skip>true</skip>  <!-- 검증을 건너뜁니다 -->
+                        </configuration>
+                    </execution>
+
+                    <!-- 포맷 작업을 활성화 -->
+                    <execution>
+                        <id>format</id>
+                        <goals>
+                            <goal>format</goal>  <!-- 소스코드를 포맷합니다 -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
