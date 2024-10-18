@@ -296,7 +296,7 @@ public abstract class KeyExchange {
     i = index;
     boolean result = false;
 
-    if (alg.equals("ssh-rsa")) {
+    if (alg.equals("ssh-rsa") || alg.equals("rsa-sha2-256") || alg.equals("rsa-sha2-512")) {
       byte[] tmp;
       byte[] ee;
       byte[] n;
@@ -305,13 +305,13 @@ public abstract class KeyExchange {
       key_alg_name = alg;
 
       j = ((K_S[i++] << 24) & 0xff000000) | ((K_S[i++] << 16) & 0x00ff0000)
-          | ((K_S[i++] << 8) & 0x0000ff00) | ((K_S[i++]) & 0x000000ff);
+              | ((K_S[i++] << 8) & 0x0000ff00) | ((K_S[i++]) & 0x000000ff);
       tmp = new byte[j];
       System.arraycopy(K_S, i, tmp, 0, j);
       i += j;
       ee = tmp;
       j = ((K_S[i++] << 24) & 0xff000000) | ((K_S[i++] << 16) & 0x00ff0000)
-          | ((K_S[i++] << 8) & 0x0000ff00) | ((K_S[i++]) & 0x000000ff);
+              | ((K_S[i++] << 8) & 0x0000ff00) | ((K_S[i++]) & 0x000000ff);
       tmp = new byte[j];
       System.arraycopy(K_S, i, tmp, 0, j);
       i += j;
@@ -320,20 +320,22 @@ public abstract class KeyExchange {
       SignatureRSA sig = null;
       Buffer buf = new Buffer(sig_of_H);
       String foo = Util.byte2str(buf.getString());
+
       try {
-        Class<? extends SignatureRSA> c =
-            Class.forName(session.getConfig(foo)).asSubclass(SignatureRSA.class);
+        // `rsa-sha2-512` 서명 알고리즘 처리
+        Class<? extends SignatureRSA> c = Class.forName(session.getConfig(alg)).asSubclass(SignatureRSA.class);
         sig = c.getDeclaredConstructor().newInstance();
         sig.init();
       } catch (Exception e) {
         throw new JSchException(e.toString(), e);
       }
+
       sig.setPubKey(ee, n);
       sig.update(H);
       result = sig.verify(sig_of_H);
 
       if (session.getLogger().isEnabled(Logger.INFO)) {
-        session.getLogger().log(Logger.INFO, "ssh_rsa_verify: " + foo + " signature " + result);
+        session.getLogger().log(Logger.INFO, alg + " signature: " + result);
       }
     } else if (alg.equals("ssh-dss")) {
       byte[] q = null;
