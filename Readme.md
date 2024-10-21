@@ -1,3 +1,10 @@
+## The reason why i forked jsch
+
+When requesting ssh access to a specific device, rsa-sha2-256 was received from the alg value in KeyExchange, and no processing existed for that response value.
+Also, when checking HostKey, sha2-512 was received from the key[8] value, so we added processing for that value.
+I don't know if these values are standard, but hopefully this helps.
+If you want to see the modifications, search for dev_cwc
+
 # Fork of JSch-0.1.55
 
 See original [README](README)
