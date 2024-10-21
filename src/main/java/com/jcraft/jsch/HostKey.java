@@ -44,6 +44,9 @@ public class HostKey {
   public static final int ECDSA521 = 5;
   public static final int ED25519 = 6;
   public static final int ED448 = 7;
+  //dev_cwc
+  public static final int SSHRSA256 = 9;
+  public static final int SSHRSA512 = 10;
 
   protected String marker;
   protected String host;
@@ -72,7 +75,15 @@ public class HostKey {
         this.type = SSHDSS;
       } else if (key[8] == 'r') {
         this.type = SSHRSA;
-      } else if (key[8] == 'e' && key[10] == '2') {
+      }
+      //dev_cwc
+      else if (key[8] == 's' && key[13] == '2') {
+        this.type = SSHRSA256;
+      }
+      else if (key[8] == 's' && key[13] == '5') {
+        this.type = SSHRSA512;
+      }
+      else if (key[8] == 'e' && key[10] == '2') {
         this.type = ED25519;
       } else if (key[8] == 'e' && key[10] == '4') {
         this.type = ED448;

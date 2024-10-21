@@ -296,6 +296,7 @@ public abstract class KeyExchange {
     i = index;
     boolean result = false;
 
+    //dev_cwc
     if (alg.equals("ssh-rsa") || alg.equals("rsa-sha2-256") || alg.equals("rsa-sha2-512")) {
       byte[] tmp;
       byte[] ee;
