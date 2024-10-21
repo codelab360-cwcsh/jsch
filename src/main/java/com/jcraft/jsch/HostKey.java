@@ -108,7 +108,7 @@ public class HostKey {
   }
 
   public String getType() {
-    if (type == SSHDSS || type == SSHRSA || type == ED25519 || type == ED448 || type == ECDSA256
+    if (type == SSHDSS || type == SSHRSA || type == SSHRSA256 || type == SSHRSA512 || type == ED25519 || type == ED448 || type == ECDSA256
         || type == ECDSA384 || type == ECDSA521) {
       return Util.byte2str(names[type - 1]);
     }
