@@ -324,7 +324,7 @@ public abstract class KeyExchange {
 
       try {
         // `rsa-sha2-512` 서명 알고리즘 처리
-        Class<? extends SignatureRSA> c = Class.forName(session.getConfig(alg)).asSubclass(SignatureRSA.class);
+        Class<? extends SignatureRSA> c = Class.forName(session.getConfig(foo)).asSubclass(SignatureRSA.class);
         sig = c.getDeclaredConstructor().newInstance();
         sig.init();
       } catch (Exception e) {
