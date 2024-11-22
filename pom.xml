@@ -4,7 +4,7 @@
     <groupId>com.github.mwiede</groupId>
     <artifactId>jsch</artifactId>
     <packaging>jar</packaging>
-    <version>0.2.21-SNAPSHOT</version>
+    <version>0.2.22-SNAPSHOT</version>
     <name>JSch</name>
     <url>https://github.com/mwiede/jsch</url>
     <description>JSch is a pure Java implementation of SSH2</description>
@@ -75,21 +75,21 @@
         </license>
     </licenses>
     <properties>
-        <project.build.outputTimestamp>2024-09-17T09:00:59Z</project.build.outputTimestamp>
+        <project.build.outputTimestamp>2024-10-30T09:31:46Z</project.build.outputTimestamp>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <skipITs>true</skipITs>
         <junixsocket.version>2.10.1</junixsocket.version>
         <jna.version>5.15.0</jna.version>
         <log4j.version>2.24.1</log4j.version>
-        <errorprone.version>2.34.0</errorprone.version>
-        <surefire.version>3.5.1</surefire.version>
+        <errorprone.version>2.35.1</errorprone.version>
+        <surefire.version>3.5.2</surefire.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk18on</artifactId>
-            <version>1.78.1</version>
+            <version>1.79</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -144,7 +144,7 @@
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>1.20.2</version>
+            <version>1.20.3</version>
             <scope>test</scope>
             <!-- Rely upon jna-jpms brought in above -->
             <exclusions>
@@ -423,7 +423,7 @@
                         Import-Package: \
                             com.sun.jna*;version="${range;[=0,+)}";resolution:=optional,\
                             org.apache.logging.log4j*;version="${range;[=0,4)}";resolution:=optional,\
-                            org.bouncycastle*;version="[1.76,${versionmask;+})";resolution:=optional,\
+                            org.bouncycastle*;version="[1.79,${versionmask;+})";resolution:=optional,\
                             org.slf4j*;version="[1.7,${versionmask;+})";resolution:=optional,\
                             org.newsclub.net.unix;resolution:=optional,\
                             org.ietf.jgss;resolution:=optional,\
@@ -523,7 +523,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.10.1</version>
+                <version>3.11.1</version>
                 <configuration>
                     <quiet>true</quiet>
                     <doclint>none</doclint>
@@ -583,17 +583,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.20.0</version>
+                <version>3.21.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.8.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.6.0</version>
                 <configuration>
                     <failOnViolation>true</failOnViolation>
                     <logViolationsToConsole>true</logViolationsToConsole>

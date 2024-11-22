@@ -19,7 +19,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: Cache local Maven repository
-      uses: actions/cache@3624ceb22c1c5a301c8db4169662070a689d9ea8 # v4.1.1
+      uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
       with:
         path: |
           ~/.m2/repository
@@ -28,7 +28,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-build-maven-
     - name: Set up JDK
-      uses: actions/setup-java@b36c23c0d998641eff861008f374ee103c25ac73 # v4.4.0
+      uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4.5.0
       with:
         distribution: 'zulu'
         java-version: '21'
@@ -47,12 +47,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        java: ['8', '11', '17', '21', '22']
+        java: ['8', '11', '17', '21', '23']
     steps:
     - name: Checkout repository
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: Cache local Maven repository
-      uses: actions/cache@3624ceb22c1c5a301c8db4169662070a689d9ea8 # v4.1.1
+      uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4.1.2
       with:
         path: |
           ~/.m2/repository
@@ -61,7 +61,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-test-${{ matrix.java }}-maven-
     - name: Set up JDK
-      uses: actions/setup-java@b36c23c0d998641eff861008f374ee103c25ac73 # v4.4.0
+      uses: actions/setup-java@8df1039502a15bceb9433410b1a100fbe190c53b # v4.5.0
       with:
         distribution: 'zulu'
         java-version: ${{ matrix.java }}
